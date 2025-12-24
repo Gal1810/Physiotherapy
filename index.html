@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>MidTask</title>
+    <base href="/Physiotherapy/" />
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/app.css" rel="stylesheet"/>
+    <link href="MidTask.Client.styles.css" rel="stylesheet"/>
+</head>
+
+<body>
+<div id="app">Loading...</div>
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+<script src="_framework/blazor.webassembly.js"></script>
+<script src="SCORM_API_wrapper.js"></script>
+<script>
+
+    function processScormForm(name, phone, subject) {
+        // מנסים להתחבר
+        var isConnected = pipwerks.SCORM.init();
+
+        // כאן השינוי הגדול: במקום לעצור, אנחנו רק מדפיסים אזהרה וממשיכים
+        if (!isConnected) {
+            console.warn("SCORM Connection Failed - Running in Offline Mode");
+            // לא עושים return! ממשיכים הלאה כדי שהמשתמש ירגיש שהכל עובד
+        }
+
+        // הכנת הנתונים (אותו דבר כמו קודם)
+        var interactions = [
+            {id: "user_name", type: "fill-in", student_response: name || "no-name", result: "correct"},
+            {id: "user_phone", type: "fill-in", student_response: phone || "no-phone", result: "correct"},
+            {id: "user_subject", type: "choice", student_response: subject || "no-subject", result: "correct"}
+        ];
+
+        // שולחים רק אם יש חיבור אמיתי
+        if (isConnected) {
+            sendInteractionsBatchToLMS(interactions);
+            finalizeScorm();
+        } else {
+            // אם אנחנו ב-GitHub (בלי מודל), סתם נקפיץ הודעה נחמדה
+            alert("תודה " + name + "! הטופס נשלח בהצלחה (מצב סימולציה - ללא SCORM)");
+        }
+
+        // --- פונקציות עזר ---
+
+        function sendInteractionsBatchToLMS(interactions) {
+            var scorm = pipwerks.SCORM;
+            var count = parseInt(scorm.get('cmi.interactions._count') || '0', 10);
+
+            interactions.forEach(function (item, index) {
+                var currentIdx = count + index;
+
+                scorm.set("cmi.interactions." + currentIdx + ".id", item.id);
+                scorm.set("cmi.interactions." + currentIdx + ".type", item.type);
+                scorm.set("cmi.interactions." + currentIdx + ".student_response", item.student_response);
+                scorm.set("cmi.interactions." + currentIdx + ".result", item.result);
+                scorm.set("cmi.interactions." + currentIdx + ".correct_responses.0.pattern", "any");
+            });
+
+            scorm.save();
+        }
+
+        function finalizeScorm() {
+            var scorm = pipwerks.SCORM;
+
+            scorm.set("cmi.core.score.min", "0");
+            scorm.set("cmi.core.score.max", "100");
+            scorm.set("cmi.core.score.raw", "100");
+
+            scorm.set("cmi.core.lesson_status", "passed");
+
+            scorm.save();
+            scorm.quit();
+
+            alert("הפרטים נשלחו בהצלחה למערכת הלמידה!");
+        }
+    }
+</script>
+
+</body>
+
+</html>
