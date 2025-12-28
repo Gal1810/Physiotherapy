@@ -1,0 +1,519 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css'); 
+
+html, body {
+    font-family: Helvetica, Arial, sans-serif;
+    direction: rtl;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    background-color: #f8f9fa;
+}
+
+h1:focus {
+    outline: none;
+}
+
+a, .btn-link {
+    color: #0071c1;
+    text-decoration: none;
+}
+
+/* --- עיצוב ה-Hero (החלק העליון) --- */
+.HeroSection {
+    background: linear-gradient(135deg, #0F4C75 0%, #3282B8 100%);
+    width: 100%;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    box-shadow: 0 10px 30px rgba(15, 76, 117, 0.2);
+    margin-bottom: 40px; 
+    padding-bottom: 60px; 
+}
+
+.MainNav {
+    background: transparent;
+    padding: 10px 40px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    position: relative;
+}
+
+.nav-header {
+    display: flex;
+    align-items: center;
+    color: #ffffff; 
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-title {
+    margin-left: 15px;
+}
+
+.hamburger-btn {
+    display: none;
+    color: white;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.nav-links-wrapper {
+    display: flex;
+    gap: 30px;
+}
+
+.navLinks {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.9); 
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.navLinks:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+/* --- תוכן ההדר וחיפוש --- */
+.hero-content {
+    text-align: center;
+    padding-top: 40px;
+    color: #ffffff; 
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.hero-content h2 {
+    font-size: 3.5rem; 
+    font-weight: 800;
+    margin-bottom: 15px;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.hero-content h4 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+    opacity: 0.9;
+}
+
+.hero-content h5 {
+    font-size: 1.1rem;
+    font-weight: 300;
+    opacity: 0.8;
+    margin-bottom: 40px;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center; 
+    width: 100%;
+    margin-top: -30px;
+    position: relative;
+    z-index: 10;
+}
+
+.input-group {
+    width: 100%;
+    max-width: 500px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-radius: 50px;
+    overflow: hidden;
+    background: white;
+    padding: 5px;
+    display: flex;
+}
+
+.input-group input {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    flex-grow: 1;
+    outline: none;
+}
+
+.input-group .btn-warning {
+    border-radius: 50px !important;
+    padding: 10px 30px;
+    background-color: #fca311;
+    color: white;
+    border: none;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.input-group .btn-warning:hover {
+    background-color: #e8960e;
+    transform: scale(1.05);
+}
+
+/* --- עיצוב הגריד והכרטיסיות --- */
+.MainDiv {
+    width: 100%;
+    position: relative;
+    padding-bottom: 50px;
+    margin-top: 20px;
+}
+
+.cards-grid-container {
+    display: grid;
+    /* 7 עמודות בשורה אחת */
+    grid-template-columns: repeat(7, 1fr); 
+    gap: 15px;
+    width: 95%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px !important;
+    overflow: hidden;
+    font-size: 0.9rem;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+
+/* גובה קבוע לתמונה כדי שלא תימרח */
+.card-img-top {
+    width: 100%;
+    height: 140px;
+    overflow: hidden;
+}
+
+.card-img-top img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card:hover .card-img-top img {
+    transform: scale(1.1);
+}
+
+.card-body {
+    padding: 10px !important;
+}
+
+.card-title {
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+}
+
+.card-description {
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+
+/* --- Footer --- */
+.site-footer {
+    background: linear-gradient(135deg, #0F4C75 0%, #3282B8 100%);
+    width: 100%;
+    padding: 40px 0 20px 0;
+    margin-top: 50px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px;
+}
+
+.footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    width: 60%;
+}
+
+.footer-text {
+    color: #ffffff;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.footer-inputs {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center; /* יישור אנכי */
+}
+
+.footer-input {
+    border: 1px solid rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+    border-radius: 20px;
+    padding: 8px 15px;
+    flex: 1;
+    min-width: 120px;
+    outline: none;
+    font-size: 0.95rem;
+    height: 40px;
+}
+
+.footer-input::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+/* --- עיצוב תפריט בחירה מותאם אישית (החדש!) --- */
+
+.custom-select-container {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    min-width: 150px;
+}
+
+/* הכפתור עצמו - נראה כמו שאר האינפוטים */
+.select-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    text-align: right;
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.5);
+    border-radius: 20px;
+    padding: 8px 15px;
+    height: 40px;
+    font-size: 0.95rem;
+    font-family: inherit;
+}
+
+.select-trigger:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
+.arrow-icon {
+    font-size: 0.8rem;
+    transition: transform 0.3s;
+}
+
+/* כשהתפריט פתוח - החץ מסתובב */
+.select-trigger.active .arrow-icon {
+    transform: rotate(180deg);
+}
+
+/* רשימת האפשרויות */
+.custom-options {
+    display: none; /* מוסתר כברירת מחדל */
+    position: absolute;
+    bottom: 105%; /* נפתח כלפי מעלה! */
+    left: 0;
+    width: 100%;
+    background-color: #0F4C75; /* אותו כחול כמו התפריט העליון */
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 15px;
+    overflow: hidden;
+    z-index: 100;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    flex-direction: column;
+}
+
+.custom-options.open {
+    display: flex;
+    animation: slideUp 0.3s ease-out;
+}
+
+.custom-option {
+    padding: 12px 15px;
+    color: white;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: 0.2s;
+}
+
+.custom-option:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+.custom-option:last-child {
+    border-bottom: none;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- סיום תפריט מותאם --- */
+
+.submit-btn {
+    background-color: #ff8c73;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 0 30px;
+    height: 40px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.submit-btn:hover {
+    background-color: #ff7055;
+    transform: translateY(-2px);
+}
+
+.footer-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.phone-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color:  #ffffff;
+    letter-spacing: 1px;
+}
+
+.social-media-container {
+    display: flex;
+    gap: 15px;
+    margin-top: 5px;
+}
+
+.social-media-container img {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    transition: 0.3s;
+    filter: brightness(0) invert(1);
+}
+
+.social-media-container img:hover {
+    opacity: 0.8;
+    transform: scale(1.1);
+}
+
+.btn-warning {
+    background-color: #FF7E67 !important;
+    border-color: #FF7E67 !important;
+    color: white !important;
+}
+
+.btn-warning:hover {
+    background-color: #E06D5A !important;
+    border-color: #E06D5A !important;
+    color: white !important;
+}
+
+/* --- רספונסיביות --- */
+@media only screen and (max-width: 1400px) {
+    .cards-grid-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .cards-grid-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .MainNav {
+        padding: 10px 20px;
+    }
+
+    .hamburger-btn {
+        display: block;
+    }
+
+    .nav-links-wrapper {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; 
+        left: 0;
+        width: 100%;
+        background-color: #0F4C75;
+        padding: 20px 0;
+        text-align: center;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        z-index: 100;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+
+    .nav-links-wrapper.open {
+        display: flex;
+        animation: slideDown 0.3s ease-out;
+    }
+
+    .navLinks {
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        width: 100%;
+        display: block;
+    }
+
+    .hero-content h2 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-content h4 {
+        font-size: 1.2rem;
+    }
+
+    .cards-grid-container {
+        grid-template-columns: 1fr;
+        width: 95%;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        width: 90%;
+        gap: 30px;
+    }
+
+    .footer-right, .footer-left {
+        width: 100%;
+        align-items: center;
+    }
+
+    .footer-inputs {
+        flex-direction: column;
+    }
+
+    .footer-input, .custom-select-container {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .submit-btn {
+        width: 100%;
+    }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
